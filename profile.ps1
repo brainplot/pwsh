@@ -42,6 +42,15 @@ function Edit-File {
 
     Invoke-Expression "$Editor $EditorArgs $File"
 }
+
+# Create an alias to make it easier to open the Powershell configuration
+function PS-Config {
+    param(
+        [String[]]
+        $EditorArgs
+    )
+
+    Edit-File "$($Profile.CurrentUserAllHosts)" -EditorArgs "$EditorArgs"
 }
 
 # Stop the Emacs server
