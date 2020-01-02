@@ -12,8 +12,8 @@ $GitPromptSettings.DefaultPromptBeforeSuffix.Text = '`n'
 # Print the branch name at the start of the prompt, before the current directory
 $GitPromptSettings.DefaultPromptWriteStatusFirst = $true
 
-# Import z module to easily jump around within directories
-Import-Module z
+# Import ZLocation module to easily jump around within directories
+Import-Module ZLocation
 
 # Set character encoding to UTF-8 for all commands that support the -Encoding
 # parameter
