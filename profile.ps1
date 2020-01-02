@@ -19,13 +19,9 @@ Import-Module z
 # parameter
 $PSDefaultParameterValues['*:Encoding'] = 'utf8'
 
-# Functions to shorten commands
-function nuke {
+# Alias common parameters for Remove-Item
+function Nuke-Item {
     Remove-Item -Recurse -Force @Args
-}
-
-function nukev {
-	nuke -Verbose @Args
 }
 
 # Create an alias to make it easier to open this file
