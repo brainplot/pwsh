@@ -63,12 +63,19 @@ function Stop-Emacs-Server {
 
 # Start the Emacs server
 function Start-Emacs-Server {
+	param(
+		[Parameter(Position=0)]
+		[ValidateNotNullOrEmpty()]
+		[String]
+		$WorkingDirectory="$HOME"
+	)
+
 	if (Get-Process emacs -ErrorAction SilentlyContinue) {
 		echo 'Emacs is already running.'
 		return
 	}
 	Remove-Item -Recurse -Force "$HOME\.emacs.d\server\*"
-	runemacs.exe --daemon --chdir "$HOME"
+	runemacs.exe --daemon --chdir "$WorkingDirectory"
 }
 
 # Restart the Emacs server
