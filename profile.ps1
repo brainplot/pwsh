@@ -20,11 +20,13 @@ Import-Module z
 $PSDefaultParameterValues['*:Encoding'] = 'utf8'
 
 # Functions to shorten commands
-function nuke([String[]] $Paths) {
-    Remove-Item -Recurse -Force -Path $Paths
+function nuke {
+    Remove-Item -Recurse -Force @Args
 }
 
-function nukev { nuke -Verbose $args }
+function nukev {
+	nuke -Verbose @Args
+}
 
 # Create an alias to make it easier to open this file
 function shconfig {
