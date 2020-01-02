@@ -24,10 +24,24 @@ function Nuke-Item {
     Remove-Item -Recurse -Force @Args
 }
 
-# Create an alias to make it easier to open this file
-function shconfig {
-    param($editor=$env:VISUAL)
-    Invoke-Expression "$editor $args $($Profile.CurrentUserAllHosts)"
+# Create an alias to make it easier to open text files
+function Edit-File {
+    param(
+        [Parameter(Mandatory=$True, Position=0)]
+        [ValidateNotNullOrEmpty()]
+        [String]
+        $File,
+
+        [ValidateNotNullOrEmpty()]
+        [String]
+        $Editor=$env:VISUAL,
+
+        [String[]]
+        $EditorArgs
+    )
+
+    Invoke-Expression "$Editor $EditorArgs $File"
+}
 }
 
 # Stop the Emacs server
