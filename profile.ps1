@@ -15,6 +15,10 @@ $GitPromptSettings.DefaultPromptWriteStatusFirst = $true
 # Import z module to easily jump around within directories
 Import-Module z
 
+# Set character encoding to UTF-8 for all commands that support the -Encoding
+# parameter
+$PSDefaultParameterValues['*:Encoding'] = 'utf8'
+
 # Functions to shorten commands
 function nuke([String[]] $Paths) {
     Remove-Item -Recurse -Force -Path $Paths
