@@ -28,7 +28,7 @@ function nukev { nuke -Verbose $args }
 
 # Create an alias to make it easier to open this file
 function shconfig {
-    param($editor=$Env:VISUAL)
+    param($editor=$env:VISUAL)
     Invoke-Expression "$editor $args $($Profile.CurrentUserAllHosts)"
 }
 
