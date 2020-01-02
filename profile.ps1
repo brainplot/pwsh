@@ -1,3 +1,7 @@
+# Set character encoding to UTF-8 for all commands that support the -Encoding
+# parameter
+$PSDefaultParameterValues['*:Encoding'] = 'utf8'
+
 # Make Powershell behave similarly to Bash
 Import-Module PSReadLine
 Set-PSReadLineOption -EditMode Emacs
@@ -14,10 +18,6 @@ $GitPromptSettings.DefaultPromptWriteStatusFirst = $true
 
 # Import ZLocation module to easily jump around within directories
 Import-Module ZLocation
-
-# Set character encoding to UTF-8 for all commands that support the -Encoding
-# parameter
-$PSDefaultParameterValues['*:Encoding'] = 'utf8'
 
 # Alias common parameters for Remove-Item
 function Nuke-Item {
