@@ -56,7 +56,7 @@ function PS-Config {
 # Stop the Emacs server
 function Stop-Emacs-Server {
 	while (Get-Process emacs -ErrorAction SilentlyContinue) {
-		emacsclientw.exe --eval '(kill-emacs)'
+		emacsclient.exe --eval '(kill-emacs)'
 		Start-Sleep -Milliseconds 1024
 	}
 }
