@@ -32,6 +32,30 @@ function shconfig {
     Invoke-Expression "$editor $args $($Profile.CurrentUserAllHosts)"
 }
 
+# Stop the Emacs server
+function Stop-Emacs-Server {
+    while (Get-Process emacs -ErrorAction SilentlyContinue) {
+        emacsclientw.exe --eval '(kill-emacs)'
+        Start-Sleep -Milliseconds 1024
+    }
+}
+
+# Start the Emacs server
+function Start-Emacs-Server {
+    if (Get-Process emacs -ErrorAction SilentlyContinue) {
+        echo 'Emacs is already running.'
+        return
+    }
+    Remove-Item -Recurse -Force "$HOME\.emacs.d\server\*"
+    runemacs.exe --daemon --chdir "$HOME"
+}
+
+# Restart the Emacs server
+function Restart-Emacs-Server {
+    Stop-Emacs-Server
+    Start-Emacs-Server
+}
+
 # Check if ripgrep is installed before sourcing its completion database
 if (Get-Command rg.exe -ErrorAction SilentlyContinue) { . "$PSScriptRoot\_rg.ps1" }
 
