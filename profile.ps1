@@ -19,6 +19,19 @@ $GitPromptSettings.DefaultPromptWriteStatusFirst = $true
 # Import ZLocation module to easily jump around within directories
 Import-Module ZLocation
 
+# Aliases
+Remove-Item alias:\cd
+Set-Alias -Name g -Value git -Description 'Typing git over and over is tedious'
+
+# cd by itself goes back to $HOME, otherwise uses z
+function cd {
+	if ($Args.Count -eq 0) {
+		Set-Location $HOME
+	} else {
+		Invoke-ZLocation @Args
+	}
+}
+
 # Alias common parameters for Remove-Item
 function Nuke-Item {
 	Remove-Item -Recurse -Force @Args
@@ -90,6 +103,3 @@ if (Get-Command rg.exe -ErrorAction SilentlyContinue) { . "$PSScriptRoot\_rg.ps1
 # Add Rust libaries to the list of path for dynamically linked binaries
 $rustToolchains = "$env:RUSTUP_HOME\toolchains"
 foreach ($toolchain in Get-ChildItem $rustToolchains) { $env:Path += ";$rustToolchains\$toolchain\bin" }
-
-# Aliases
-Set-Alias -Name g -Value git -Description 'Typing git over and over is tedious'
