@@ -20,7 +20,7 @@ $GitPromptSettings.DefaultPromptWriteStatusFirst = $true
 Import-Module ZLocation
 
 # Aliases
-Remove-Item alias:\cd
+Remove-Item alias:\cd -ErrorAction SilentlyContinue
 Set-Alias -Name g -Value git -Description 'Typing git over and over is tedious'
 
 # cd by itself goes back to $HOME, otherwise uses z
