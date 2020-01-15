@@ -98,4 +98,6 @@ function Restart-Emacs-Server {
 }
 
 # Check if ripgrep is installed before sourcing its completion database
-if (Get-Command rg.exe -ErrorAction SilentlyContinue) { . "$PSScriptRoot\_rg.ps1" }
+if (Get-Command rg.exe -ErrorAction SilentlyContinue) {
+	. "$PSScriptRoot\_rg.ps1"
+}
