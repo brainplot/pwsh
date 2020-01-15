@@ -99,7 +99,3 @@ function Restart-Emacs-Server {
 
 # Check if ripgrep is installed before sourcing its completion database
 if (Get-Command rg.exe -ErrorAction SilentlyContinue) { . "$PSScriptRoot\_rg.ps1" }
-
-# Add Rust libaries to the list of path for dynamically linked binaries
-$rustToolchains = "$env:RUSTUP_HOME\toolchains"
-foreach ($toolchain in Get-ChildItem $rustToolchains) { $env:Path += ";$rustToolchains\$toolchain\bin" }
