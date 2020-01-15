@@ -97,6 +97,11 @@ function Restart-Emacs-Server {
 	Start-Emacs-Server
 }
 
+# Update all pip packages
+function Pip-Update-All {
+	pip list --outdated --format freeze | ForEach-Object { pip install -U $_.Substring(0, $_.IndexOf('=')) }
+}
+
 # Check if ripgrep is installed before sourcing its completion database
 if (Get-Command rg.exe -ErrorAction SilentlyContinue) {
 	. "$PSScriptRoot\_rg.ps1"
