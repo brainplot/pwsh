@@ -102,6 +102,11 @@ function Pip-Update-All {
 	pip list --outdated --format freeze | ForEach-Object { pip install -U $_.Substring(0, $_.IndexOf('=')) }
 }
 
+# Find files by name recursively
+function Find-File {
+	Get-ChildItem -Recurse -ErrorAction SilentlyContinue -Include @Args
+}
+
 # Check if ripgrep is installed before sourcing its completion database
 if (Get-Command rg.exe -ErrorAction SilentlyContinue) {
 	. "$PSScriptRoot\_rg.ps1"
