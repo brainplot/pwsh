@@ -107,7 +107,8 @@ function Find-File {
 	Get-ChildItem -Recurse -ErrorAction SilentlyContinue -Include @Args
 }
 
-# Check if ripgrep is installed before sourcing its completion database
-if (Get-Command rg.exe -ErrorAction SilentlyContinue) {
-	. "$PSScriptRoot\_rg.ps1"
+# Source ripgrep completion file
+$private:ripgrepCompletionFile = "$env:ProgramData\chocolatey\lib\ripgrep\tools\_rg.ps1"
+if (Test-Path "$ripgrepCompletionFile") {
+	. "$ripgrepCompletionFile"
 }
