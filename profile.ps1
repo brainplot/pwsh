@@ -19,18 +19,11 @@ $GitPromptSettings.DefaultPromptWriteStatusFirst = $true
 # Import ZLocation module to easily jump around within directories
 Import-Module ZLocation
 
-# Aliases
-Remove-Item alias:\cd -ErrorAction SilentlyContinue
-Set-Alias -Name g -Value git -Description 'Typing git over and over is tedious'
+# Import cd-extras module to make cd behave more like a typical Unix shell
+Import-Module cd-extras
 
-# cd by itself goes back to $HOME, otherwise uses z
-function cd {
-	if ($Args.Count -eq 0) {
-		Set-Location $HOME
-	} else {
-		Invoke-ZLocation @Args
-	}
-}
+# Aliases
+Set-Alias -Name g -Value git -Description 'Typing git over and over is tedious'
 
 # Alias common parameters for Remove-Item
 function Nuke-Item {
