@@ -32,31 +32,18 @@ function Nuke-Item {
 
 # Create an alias to make it easier to open text files
 function Edit-File {
-	param(
-		[Parameter(Mandatory=$True, Position=0)]
-		[ValidateNotNullOrEmpty()]
-		[String]
-		$File,
-
-		[ValidateNotNullOrEmpty()]
-		[String]
-		$Editor=$env:VISUAL,
-
-		[String[]]
-		$EditorArgs
-	)
-
-	Invoke-Expression "$Editor $EditorArgs $File"
+	Invoke-Expression "$env:VISUAL $Args"
 }
 
 # Create an alias to make it easier to open the Powershell configuration
 function PS-Config {
-	param(
-		[String[]]
-		$EditorArgs
-	)
+	$EditorArgs = @()
 
-	Edit-File "$($Profile.CurrentUserAllHosts)" -EditorArgs "$EditorArgs"
+	if ($env:VISUAL.Contains('emacsclient')) {
+		$EditorArgs += '-n'
+	}
+
+	Edit-File @EditorArgs @Args "$($Profile.CurrentUserAllHosts)"
 }
 
 # Stop the Emacs server
