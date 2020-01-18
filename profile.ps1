@@ -3,9 +3,16 @@
 $PSDefaultParameterValues['*:Encoding'] = 'utf8'
 
 # Make Powershell behave similarly to Bash
-Import-Module PSReadLine
-Set-PSReadLineOption -EditMode Emacs
-Set-PSReadlineOption -BellStyle Visual # Silence please...
+if ($host.Name -eq 'ConsoleHost')
+{
+	Import-Module PSReadLine
+
+	Set-PSReadLineOption -EditMode Emacs
+	Set-PSReadlineOption -BellStyle Visual
+	Set-PSReadlineOption -HistorySearchCursorMovesToEnd
+
+	Set-PSReadLineKeyHandler -Key Ctrl+w -Function BackwardKillWord
+}
 
 # Import posh-git module
 Import-Module posh-git
