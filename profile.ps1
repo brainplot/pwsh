@@ -23,7 +23,7 @@ Import-Module ZLocation
 Import-Module cd-extras
 
 # Aliases
-Set-Alias -Name g -Value git -Description 'Typing git over and over is tedious'
+Set-Alias -Name g -Value git
 
 # Alias common parameters for Remove-Item
 function Nuke-Item {
