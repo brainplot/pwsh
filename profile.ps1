@@ -95,7 +95,7 @@ function Find-File {
 }
 
 # Source ripgrep completion file
-$private:ripgrepCompletionFile = "$env:ProgramData\chocolatey\lib\ripgrep\tools\_rg.ps1"
-if (Test-Path "$ripgrepCompletionFile") {
-	. "$ripgrepCompletionFile"
+$private:RipgrepCompletionFile = "$env:ProgramData\chocolatey\lib\ripgrep\tools\_rg.ps1"
+if (Test-Path "$RipgrepCompletionFile") {
+	. "$RipgrepCompletionFile"
 }
