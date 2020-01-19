@@ -29,6 +29,12 @@ Import-Module ZLocation
 # Import cd-extras module to make cd behave more like a typical Unix shell
 Import-Module cd-extras
 
+# Import posh-vcpkg if present
+$private:PoshVcpkgLocation = "$env:VCPKG_ROOT\scripts\posh-vcpkg"
+if (Test-Path "$PoshVcpkgLocation") {
+	Import-Module "$PoshVcpkgLocation"
+}
+
 # Aliases
 Set-Alias -Name g -Value git
 
