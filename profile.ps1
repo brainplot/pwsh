@@ -91,7 +91,7 @@ function Restart-Emacs-Server {
 }
 
 # Update all pip packages
-function Pip-Update-All {
+function Update-PipPackages {
 	pip list --outdated --format freeze | ForEach-Object { pip install -U $_.Substring(0, $_.IndexOf('=')) }
 }
 
