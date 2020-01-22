@@ -1,6 +1,9 @@
 # Set character encoding to UTF-8 for all commands that support the -Encoding
-# parameter
-$PSDefaultParameterValues['*:Encoding'] = 'utf8'
+# parameter. As of PowerShell Core, UTF-8 is the default encoding.
+if ($PSVersionTable.PSVersion.Major -le 5)
+{
+	$PSDefaultParameterValues['*:Encoding'] = 'utf8'
+}
 
 # Make Powershell behave similarly to Bash
 if ($host.Name -eq 'ConsoleHost')
