@@ -5,6 +5,9 @@ if ($PSVersionTable.PSVersion.Major -le 5)
 	$PSDefaultParameterValues['*:Encoding'] = 'utf8'
 }
 
+# Set default editor to open text files with
+$Editor = 'emacsclient.exe -n'
+
 # Make Powershell behave similarly to Bash
 if ($host.Name -eq 'ConsoleHost')
 {
@@ -48,18 +51,12 @@ function Nuke-Item {
 
 # Create an alias to make it easier to open text files
 function Edit-File {
-	Invoke-Expression "$env:VISUAL $Args"
+	Invoke-Expression "$Editor $Args"
 }
 
 # Create an alias to make it easier to open the Powershell configuration
 function PS-Config {
-	$EditorArgs = @()
-
-	if ($env:VISUAL.Contains('emacsclient')) {
-		$EditorArgs += '-n'
-	}
-
-	Edit-File @EditorArgs @Args "$($Profile.CurrentUserAllHosts)"
+	Edit-File @Args "$($Profile.CurrentUserAllHosts)"
 }
 
 # Stop the Emacs server
