@@ -97,7 +97,7 @@ function Pip-Update-All {
 
 # Find files by name recursively
 function Find-File {
-	Get-ChildItem -Recurse -ErrorAction SilentlyContinue -Include @Args
+	Get-ChildItem -Force -Recurse -ErrorAction SilentlyContinue @Args
 }
 
 # Source ripgrep completion file
