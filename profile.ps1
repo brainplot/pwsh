@@ -77,8 +77,8 @@ function Start-Emacs-Server {
 		$WorkingDirectory="$HOME"
 	)
 
-	if (Get-Process emacs -ErrorAction SilentlyContinue) {
-		echo 'Emacs is already running.'
+	if (Get-Process emacs -ErrorAction Continue) {
+		Write-Output 'Emacs is already running.'
 		return
 	}
 
