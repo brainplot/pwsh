@@ -8,6 +8,9 @@ if ($PSVersionTable.PSVersion.Major -le 5)
 # Set default editor to open text files with
 $Editor = 'emacsclient.exe -n'
 
+# Set the editor for Git
+$env:GIT_EDITOR = 'emacsclient.exe'
+
 # Make Powershell behave similarly to Bash
 if ($host.Name -eq 'ConsoleHost')
 {
