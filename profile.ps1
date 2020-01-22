@@ -59,12 +59,13 @@ function PS-Config {
 	Edit-File @Args "$($Profile.CurrentUserAllHosts)"
 }
 
+$private:EmacsServerArtifacts = "$HOME\.emacs.d\server\*"
+
 # Stop the Emacs server
 function Stop-Emacs-Server {
-	while (Get-Process emacs -ErrorAction SilentlyContinue) {
-		emacsclient.exe --eval '(kill-emacs)'
-		Start-Sleep -Milliseconds 1024
-	}
+	emacsclient.exe --eval '(kill-emacs)'
+	Wait-Process emacs -Timeout 8 -ErrorAction Inquire
+	Remove-Item -Recurse -Force "$EmacsServerArtifacts"
 }
 
 # Start the Emacs server
@@ -80,14 +81,15 @@ function Start-Emacs-Server {
 		echo 'Emacs is already running.'
 		return
 	}
-	Remove-Item -Recurse -Force "$HOME\.emacs.d\server\*"
-	runemacs.exe --daemon --chdir "$WorkingDirectory"
+
+	Remove-Item -Recurse -Force "$EmacsServerArtifacts"
+	emacs.exe --daemon --chdir "$WorkingDirectory"
 }
 
 # Restart the Emacs server
 function Restart-Emacs-Server {
 	Stop-Emacs-Server
-	Start-Emacs-Server
+	Start-Emacs-Server @Args
 }
 
 # Update all pip packages
