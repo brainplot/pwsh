@@ -42,7 +42,7 @@ if (Test-Path "$PoshVcpkgLocation") {
 }
 
 # Aliases
-Set-Alias -Name g -Value git
+Set-Alias -Name g -Value git.exe
 
 # Alias common parameters for Remove-Item
 function Nuke-Item {
@@ -94,7 +94,7 @@ function Restart-Emacs-Server {
 
 # Update all pip packages
 function Update-PipPackages {
-	pip list --outdated --format freeze | ForEach-Object { pip install -U $_.Substring(0, $_.IndexOf('=')) }
+	pip.exe list --outdated --format freeze | ForEach-Object { pip.exe install -U $_.Substring(0, $_.IndexOf('=')) }
 }
 
 # Find files by name recursively
