@@ -105,6 +105,17 @@ function Find-File {
 	Get-ChildItem -Force -Recurse -ErrorAction SilentlyContinue @Args
 }
 
+# Quickly open all files with conflicts in the editor
+function Resolve-Conflicts {
+	$FilesWithConflicts = (git.exe diff --name-only --diff-filter=U | Get-Unique)
+
+	if ($FilesWithConflicts) {
+		Invoke-Expression "$Editor $FilesWithConflicts"
+	} else {
+		Write-Output 'There are currently no files with conflicts.'
+	}
+}
+
 # Source ripgrep completion file
 $private:RipgrepCompletionFile = "$env:ProgramData\chocolatey\lib\ripgrep\tools\_rg.ps1"
 if (Test-Path "$RipgrepCompletionFile") {
