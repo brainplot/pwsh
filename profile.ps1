@@ -62,14 +62,14 @@ function PS-Config {
 $private:EmacsServerArtifacts = "$HOME\.emacs.d\server\*"
 
 # Stop the Emacs server
-function Stop-Emacs-Server {
+function Stop-EmacsServer {
 	emacsclient.exe --eval '(kill-emacs)'
 	Wait-Process emacs -Timeout 8 -ErrorAction Inquire
 	Remove-Item -Recurse -Force "$EmacsServerArtifacts"
 }
 
 # Start the Emacs server
-function Start-Emacs-Server {
+function Start-EmacsServer {
 	param(
 		[Parameter(Position=0)]
 		[ValidateNotNullOrEmpty()]
@@ -87,9 +87,9 @@ function Start-Emacs-Server {
 }
 
 # Restart the Emacs server
-function Restart-Emacs-Server {
-	Stop-Emacs-Server
-	Start-Emacs-Server @Args
+function Restart-EmacsServer {
+	Stop-EmacsServer
+	Start-EmacsServer @Args
 }
 
 # Update all pip packages
