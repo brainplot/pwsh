@@ -12,8 +12,7 @@ $Editor = 'emacsclient.exe -n'
 $env:GIT_EDITOR = 'emacsclient.exe'
 
 # Make Powershell behave similarly to Bash
-if ($host.Name -eq 'ConsoleHost')
-{
+if ($host.Name -eq 'ConsoleHost') {
 	Import-Module PSReadLine
 
 	Set-PSReadLineOption -EditMode Emacs
@@ -62,13 +61,16 @@ function PS-Config {
 	Edit-File @Args "$($Profile.CurrentUserAllHosts)"
 }
 
-$private:EmacsServerArtifacts = "$HOME\.emacs.d\server\*"
+$EmacsServerArtifactsFolder = "$HOME\.emacs.d\server\"
 
 # Stop the Emacs server
 function Stop-EmacsServer {
 	emacsclient.exe --eval '(kill-emacs)'
 	Wait-Process emacs -Timeout 8 -ErrorAction Inquire
-	Remove-Item -Recurse -Force "$EmacsServerArtifacts"
+
+	if (Test-Path "$EmacsServerArtifactsFolder") {
+		Remove-Item -Recurse -Force "$EmacsServerArtifactsFolder"
+	}
 }
 
 # Start the Emacs server
@@ -80,13 +82,16 @@ function Start-EmacsServer {
 		$WorkingDirectory="$HOME"
 	)
 
-	if (Get-Process emacs -ErrorAction Continue) {
-		Write-Output 'Emacs is already running.'
+	if (Get-Process emacs -ErrorAction SilentlyContinue) {
+		Write-Output 'Emacs is already running in the background.'
 		return
 	}
 
-	Remove-Item -Recurse -Force "$EmacsServerArtifacts"
-	emacs.exe --daemon --chdir "$WorkingDirectory"
+	if (Test-Path "$EmacsServerArtifactsFolder") {
+		Remove-Item -Recurse -Force "$EmacsServerArtifactsFolder"
+	}
+
+	runemacs.exe --daemon --chdir "$WorkingDirectory"
 }
 
 # Restart the Emacs server
