@@ -122,7 +122,7 @@ function Resolve-Conflicts {
 }
 
 # Source ripgrep completion file
-$private:RipgrepCompletionFile = "$env:ProgramData\chocolatey\lib\ripgrep\tools\_rg.ps1"
+$private:RipgrepCompletionFile = "$HOME\scoop\ripgrep\current\complete\_rg.ps1"
 if (Test-Path "$RipgrepCompletionFile") {
 	. "$RipgrepCompletionFile"
 }
