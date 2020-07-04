@@ -6,10 +6,7 @@ if ($PSVersionTable.PSVersion.Major -le 5)
 }
 
 # Set default editor to open text files with
-$Editor = 'emacsclient.exe -n'
-
-# Set the editor for Git
-$env:GIT_EDITOR = 'emacsclient.exe'
+$Editor = if ($env:EDITOR) { $env:EDITOR } else { 'nvim.exe' }
 
 # Make Powershell behave similarly to Bash
 if ($host.Name -eq 'ConsoleHost') {
@@ -59,45 +56,6 @@ function Edit-File {
 # Create an alias to make it easier to open the Powershell configuration
 function PS-Config {
 	Edit-File @Args "$($Profile.CurrentUserAllHosts)"
-}
-
-$EmacsServerArtifactsFolder = "$HOME\.emacs.d\server\"
-
-# Stop the Emacs server
-function Stop-EmacsServer {
-	emacsclient.exe --eval '(kill-emacs)'
-	Wait-Process emacs -Timeout 8 -ErrorAction Inquire
-
-	if (Test-Path "$EmacsServerArtifactsFolder") {
-		Remove-Item -Recurse -Force "$EmacsServerArtifactsFolder"
-	}
-}
-
-# Start the Emacs server
-function Start-EmacsServer {
-	param(
-		[Parameter(Position=0)]
-		[ValidateNotNullOrEmpty()]
-		[String]
-		$WorkingDirectory="$HOME"
-	)
-
-	if (Get-Process emacs -ErrorAction SilentlyContinue) {
-		Write-Output 'Emacs is already running in the background.'
-		return
-	}
-
-	if (Test-Path "$EmacsServerArtifactsFolder") {
-		Remove-Item -Recurse -Force "$EmacsServerArtifactsFolder"
-	}
-
-	runemacs.exe --daemon --chdir "$WorkingDirectory"
-}
-
-# Restart the Emacs server
-function Restart-EmacsServer {
-	Stop-EmacsServer
-	Start-EmacsServer @Args
 }
 
 # Update all pip packages
