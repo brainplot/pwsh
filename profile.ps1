@@ -58,6 +58,11 @@ function PS-Config {
 	Edit-File @Args "$($Profile.CurrentUserAllHosts)"
 }
 
+# Quickly jump to Neovim's config folder
+function Cd-Nvim {
+	cd "$env:LOCALAPPDATA\nvim"
+}
+
 # Update all pip packages
 function Update-PipPackages {
 	pip.exe list --outdated --format freeze | ForEach-Object { pip.exe install -U $_.Substring(0, $_.IndexOf('=')) }
