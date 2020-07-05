@@ -43,6 +43,8 @@ if (Test-Path "$PoshVcpkgLocation") {
 # Aliases
 Set-Alias -Name g -Value git.exe
 
+Remove-Item Alias:curl
+
 # Alias common parameters for Remove-Item
 function Nuke-Item {
 	Remove-Item -Recurse -Force @Args
