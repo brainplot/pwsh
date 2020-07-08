@@ -91,3 +91,8 @@ $private:RipgrepCompletionFile = "$HOME\scoop\ripgrep\current\complete\_rg.ps1"
 if (Test-Path "$RipgrepCompletionFile") {
 	. "$RipgrepCompletionFile"
 }
+
+# Get weather report
+function Get-Weather {
+	curl.exe 'wttr.in'
+}
