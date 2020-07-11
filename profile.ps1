@@ -56,7 +56,7 @@ function Edit-File {
 }
 
 # Create an alias to make it easier to open the Powershell configuration
-function PS-Config {
+function Config-PowerShell {
 	Edit-File @Args "$($Profile.CurrentUserAllHosts)"
 }
 
