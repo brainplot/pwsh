@@ -42,6 +42,7 @@ if (Test-Path "$PoshVcpkgLocation") {
 
 # Aliases
 Set-Alias -Name g -Value git.exe
+Set-Alias -Name which -Value where.exe
 
 Remove-Item Alias:curl
 
