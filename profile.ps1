@@ -61,6 +61,10 @@ function Config-PowerShell {
 	Edit-File @Args "$($Profile.CurrentUserAllHosts)"
 }
 
+function Cd-PowerShell {
+	cd (Split-Path "$($Profile.CurrentUserAllHosts)" -Parent)
+}
+
 # Open Neovim's config file
 function Config-Neovim {
 	Edit-File @Args "$env:LOCALAPPDATA\nvim\init.vim"
