@@ -71,7 +71,7 @@ function Config-Neovim {
 }
 
 # Quickly jump to Neovim's config folder
-function Cd-Nvim {
+function Cd-Neovim {
 	cd "$env:LOCALAPPDATA\nvim"
 }
 
