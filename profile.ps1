@@ -80,6 +80,11 @@ function Update-PipPackages {
 	pip.exe list --outdated --format freeze | ForEach-Object { pip.exe install -U $_.Substring(0, $_.IndexOf('=')) }
 }
 
+# Quicky cd back to projects' root folder
+function Cd-Root {
+	cd (git.exe rev-parse --show-toplevel)
+}
+
 # Find files by name recursively
 function Find-File {
 	Get-ChildItem -Force -Recurse -ErrorAction SilentlyContinue @Args
