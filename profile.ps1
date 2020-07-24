@@ -61,28 +61,14 @@ function Config-PowerShell {
 	Edit-File @Args "$($Profile.CurrentUserAllHosts)"
 }
 
-function Cd-PowerShell {
-	cd (Split-Path "$($Profile.CurrentUserAllHosts)" -Parent)
-}
-
 # Open Neovim's config file
 function Config-Neovim {
 	Edit-File @Args "$env:LOCALAPPDATA\nvim\init.vim"
 }
 
-# Quickly jump to Neovim's config folder
-function Cd-Neovim {
-	cd "$env:LOCALAPPDATA\nvim"
-}
-
 # Update all pip packages
 function Update-PipPackages {
 	pip.exe list --outdated --format freeze | ForEach-Object { pip.exe install -U $_.Substring(0, $_.IndexOf('=')) }
-}
-
-# Quicky cd back to projects' root folder
-function Cd-Root {
-	cd (git.exe rev-parse --show-toplevel)
 }
 
 # Find files by name recursively
