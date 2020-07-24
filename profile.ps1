@@ -92,7 +92,7 @@ function Resolve-Conflicts {
 }
 
 # Source ripgrep completion file
-$private:RipgrepCompletionFile = "$HOME\scoop\ripgrep\current\complete\_rg.ps1"
+$private:RipgrepCompletionFile = "$HOME\scoop\apps\ripgrep\current\complete\_rg.ps1"
 if (Test-Path "$RipgrepCompletionFile") {
 	. "$RipgrepCompletionFile"
 }
