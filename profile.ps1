@@ -15,8 +15,6 @@ if ($host.Name -eq 'ConsoleHost') {
 	Set-PSReadLineOption -EditMode Emacs
 	Set-PSReadlineOption -BellStyle Visual
 	Set-PSReadlineOption -HistorySearchCursorMovesToEnd
-
-	Set-PSReadLineKeyHandler -Key Ctrl+w -Function BackwardKillWord
 }
 
 # Import posh-git module
