@@ -6,7 +6,7 @@ if ($PSVersionTable.PSVersion.Major -le 5)
 }
 
 # Set default editor to open text files with
-$Editor = if ($env:EDITOR) { $env:EDITOR } else { 'nvim.exe' }
+$Editor = if ($env:EDITOR) { $env:EDITOR } else { 'notepad.exe' }
 
 # Make Powershell behave similarly to Bash
 if ($host.Name -eq 'ConsoleHost') {
