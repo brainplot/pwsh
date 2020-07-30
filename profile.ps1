@@ -52,7 +52,7 @@ function Nuke-Item {
 
 # Create an alias to make it easier to open text files
 function Edit-File {
-	Invoke-Expression "$Editor $Args"
+	&"$Editor" @Args
 }
 
 # Create an alias to make it easier to open the Powershell configuration
@@ -80,7 +80,7 @@ function Resolve-Conflicts {
 	$FilesWithConflicts = (git.exe diff --name-only --diff-filter=U | Get-Unique)
 
 	if ($FilesWithConflicts) {
-		Invoke-Expression "$Editor $FilesWithConflicts"
+		&"$Editor" @FilesWithConflicts
 	} else {
 		Write-Output 'There are currently no files with conflicts.'
 	}
