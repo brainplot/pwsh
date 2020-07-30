@@ -47,6 +47,8 @@ Remove-Item Alias:curl
 
 # Alias common parameters for Remove-Item
 function Nuke-Item {
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseApprovedVerbs', '')]
+	param()
 	Remove-Item -Recurse -Force @Args
 }
 
