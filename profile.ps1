@@ -66,7 +66,7 @@ function Edit-Neovim {
 }
 
 # Update all pip packages
-function Update-PipPackages {
+function Update-PipLocalRepository {
 	pip.exe list --outdated --format freeze | ForEach-Object { pip.exe install -U $_.Substring(0, $_.IndexOf('=')) }
 }
 
@@ -76,7 +76,7 @@ function Find-File {
 }
 
 # Quickly open all files with conflicts in the editor
-function Resolve-Conflicts {
+function Resolve-MergeConflict {
 	$FilesWithConflicts = (git.exe diff --name-only --diff-filter=U | Get-Unique)
 
 	if ($FilesWithConflicts) {
