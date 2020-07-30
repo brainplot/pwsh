@@ -56,12 +56,12 @@ function Edit-File {
 }
 
 # Create an alias to make it easier to open the Powershell configuration
-function Config-PowerShell {
+function Edit-PowerShell {
 	Edit-File @Args "$($Profile.CurrentUserAllHosts)"
 }
 
 # Open Neovim's config file
-function Config-Neovim {
+function Edit-Neovim {
 	Edit-File @Args "$env:LOCALAPPDATA\nvim\init.vim"
 }
 
