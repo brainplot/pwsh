@@ -1,2 +1,5 @@
 Modules/
 Scripts/
+
+# Completion scripts
+_*.ps1
