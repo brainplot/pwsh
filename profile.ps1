@@ -96,6 +96,9 @@ function Resolve-MergeConflict {
 # Source ripgrep completion file
 Source-OptionalFile "$HOME\scoop\apps\ripgrep\current\complete\_rg.ps1"
 
+# Source rustup completions
+Source-OptionalFile "$PSScriptRoot\_rustup.ps1"
+
 # Get weather report
 function Get-Weather {
 	curl.exe 'wttr.in'
