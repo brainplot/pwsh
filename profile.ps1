@@ -17,6 +17,14 @@ if ($host.Name -eq 'ConsoleHost') {
 	Set-PSReadlineOption -HistorySearchCursorMovesToEnd
 }
 
+function private:Source-OptionalFile ([string] $targetFile) {
+	try {
+		. "$targetFile"
+	} catch [CommandNotFoundException] {
+		Write-Host $_.Exception.Message -ForegroundColor Yellow
+	}
+}
+
 # Import posh-git module
 Import-Module posh-git
 
@@ -30,10 +38,7 @@ $GitPromptSettings.DefaultPromptWriteStatusFirst = $true
 Import-Module ZLocation
 
 # Import posh-vcpkg if present
-$private:PoshVcpkgLocation = "$env:VCPKG_ROOT\scripts\posh-vcpkg"
-if (Test-Path "$PoshVcpkgLocation") {
-	Import-Module "$PoshVcpkgLocation"
-}
+Import-Module "$env:VCPKG_ROOT\scripts\posh-vcpkg" -ErrorAction SilentlyContinue
 
 # Aliases
 Set-Alias -Name g -Value git.exe
@@ -89,10 +94,7 @@ function Resolve-MergeConflict {
 }
 
 # Source ripgrep completion file
-$private:RipgrepCompletionFile = "$HOME\scoop\apps\ripgrep\current\complete\_rg.ps1"
-if (Test-Path "$RipgrepCompletionFile") {
-	. "$RipgrepCompletionFile"
-}
+Source-OptionalFile "$HOME\scoop\apps\ripgrep\current\complete\_rg.ps1"
 
 # Get weather report
 function Get-Weather {
