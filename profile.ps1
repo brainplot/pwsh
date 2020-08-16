@@ -44,8 +44,8 @@ Import-Module "$env:VCPKG_ROOT\scripts\posh-vcpkg" -ErrorAction SilentlyContinue
 Set-Alias -Name g -Value git.exe
 Set-Alias -Name which -Value where.exe
 
-Remove-Item Alias:curl
-Remove-Item Alias:wget
+Remove-Item Alias:curl -ErrorAction SilentlyContinue
+Remove-Item Alias:wget -ErrorAction SilentlyContinue
 
 # Alias common parameters for Remove-Item
 function Nuke-Item {
