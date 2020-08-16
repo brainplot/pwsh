@@ -45,6 +45,7 @@ Set-Alias -Name g -Value git.exe
 Set-Alias -Name which -Value where.exe
 
 Remove-Item Alias:curl
+Remove-Item Alias:wget
 
 # Alias common parameters for Remove-Item
 function Nuke-Item {
