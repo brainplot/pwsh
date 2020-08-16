@@ -44,10 +44,6 @@ Import-Module "$env:VCPKG_ROOT\scripts\posh-vcpkg" -ErrorAction SilentlyContinue
 Set-Alias -Name g -Value git.exe
 Set-Alias -Name which -Value where.exe
 
-if ($env:VCPKG_ROOT) {
-	Set-Alias -Name vcpkg "$env:VCPKG_ROOT\vcpkg.exe"
-}
-
 Remove-Item Alias:curl
 
 # Alias common parameters for Remove-Item
