@@ -5,6 +5,10 @@ if ($PSVersionTable.PSVersion.Major -le 5)
 	$PSDefaultParameterValues['*:Encoding'] = 'utf8'
 }
 
+$PSDefaultParameterValues += @{
+	'Invoke-WebRequest:UseBasicParsing' = $True
+}
+
 # Set default editor to open text files with
 $Editor = if ($env:EDITOR) { $env:EDITOR } else { 'notepad.exe' }
 
