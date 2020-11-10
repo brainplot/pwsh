@@ -90,6 +90,21 @@ function Resolve-MergeConflict {
 	}
 }
 
+# Emulate touch command
+function Update-File {
+	$file = $args[0]
+
+	if ($file -eq $null) {
+		throw "No filename supplied"
+	}
+
+	if (Test-Path $file) {
+		(Get-ChildItem $file).LastWriteTime = Get-Date
+	} else {
+		Out-File -Encoding ascii $file
+	}
+}
+
 # Source ripgrep completion file
 Source-OptionalFile "$HOME\scoop\apps\ripgrep\current\complete\_rg.ps1"
 
