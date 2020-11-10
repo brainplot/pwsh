@@ -36,7 +36,7 @@ Import-Module posh-git
 $GitPromptSettings.DefaultPromptBeforeSuffix.Text = '`n'
 
 # Print the branch name at the start of the prompt, before the current directory
-$GitPromptSettings.DefaultPromptWriteStatusFirst = $true
+$GitPromptSettings.DefaultPromptWriteStatusFirst = $True
 
 # Import ZLocation module to easily jump around within directories
 Import-Module ZLocation
