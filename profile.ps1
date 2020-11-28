@@ -22,10 +22,8 @@ if ($host.Name -eq 'ConsoleHost') {
 }
 
 function private:Source-OptionalFile ([string] $targetFile) {
-	try {
-		. "$targetFile"
-	} catch [CommandNotFoundException] {
-		Write-Host $_.Exception.Message -ForegroundColor Yellow
+	if (Test-Path $targetFile) {
+		. $targetFile
 	}
 }
 
