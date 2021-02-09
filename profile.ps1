@@ -85,7 +85,7 @@ function Find-File {
 }
 
 # Quickly open all files with conflicts in the editor
-function Resolve-MergeConflict {
+function Resolve-MergeConflicts {
 	$FilesWithConflicts = (git.exe diff --name-only --diff-filter=U | Get-Unique)
 
 	if ($FilesWithConflicts) {
