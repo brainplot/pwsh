@@ -48,10 +48,6 @@ Import-Module ZLocation
 # Import posh-vcpkg if present
 Import-Module "$env:VCPKG_ROOT\scripts\posh-vcpkg" -ErrorAction SilentlyContinue
 
-# Aliases
-Set-Alias -Name g -Value git.exe
-Set-Alias -Name which -Value where.exe
-
 Remove-Item Alias:curl -ErrorAction SilentlyContinue
 Remove-Item Alias:wget -ErrorAction SilentlyContinue
 
