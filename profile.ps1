@@ -42,9 +42,6 @@ Import-Module ZLocation
 # Import posh-vcpkg if present
 Import-Module "$env:VCPKG_ROOT\scripts\posh-vcpkg" -ErrorAction SilentlyContinue
 
-# Enable scoop completion
-Import-Module "$HOME\scoop\modules\scoop-completion"
-
 # Aliases
 Set-Alias -Name g -Value git.exe
 Set-Alias -Name which -Value where.exe
