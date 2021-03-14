@@ -1,3 +1,9 @@
+# Disable blinking cursor if running in Windows Terminal
+if (Test-Path env:WT_PROFILE_ID)
+{
+	Write-Output "`e[2 q"
+}
+
 # Set character encoding to UTF-8 for all commands that support the -Encoding
 # parameter. As of PowerShell Core, UTF-8 is the default encoding.
 if ($PSVersionTable.PSVersion.Major -le 5)
