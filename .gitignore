@@ -3,3 +3,6 @@ Scripts/
 
 # Completion scripts
 _*.ps1
+
+# PowerShell Core configuration files
+powershell.config.json
