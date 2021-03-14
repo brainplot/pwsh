@@ -48,8 +48,11 @@ Import-Module ZLocation
 # Import posh-vcpkg if present
 Import-Module "$env:VCPKG_ROOT\scripts\posh-vcpkg" -ErrorAction SilentlyContinue
 
-Remove-Item Alias:curl -ErrorAction SilentlyContinue
-Remove-Item Alias:wget -ErrorAction SilentlyContinue
+if ($PSVersionTable.PSVersion.Major -le 5)
+{
+	Remove-Item Alias:curl -ErrorAction SilentlyContinue
+	Remove-Item Alias:wget -ErrorAction SilentlyContinue
+}
 
 # Alias common parameters for Remove-Item
 function Nuke-Item {
