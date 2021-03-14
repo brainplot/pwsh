@@ -10,7 +10,7 @@ $PSDefaultParameterValues += @{
 }
 
 # Set default editor to open text files with
-$Editor = if ($env:EDITOR) { $env:EDITOR } else { 'notepad.exe' }
+$Editor = if ($env:EDITOR) { $env:EDITOR } else { 'notepad' }
 
 # Make Powershell behave similarly to Bash
 if ($host.Name -eq 'ConsoleHost') {
@@ -76,7 +76,7 @@ function Edit-Neovim {
 
 # Update all pip packages
 function Update-PipLocalRepository {
-	pip.exe list --outdated --format freeze | ForEach-Object { pip.exe install -U $_.Substring(0, $_.IndexOf('=')) }
+	pip list --outdated --format freeze | ForEach-Object { pip.exe install -U $_.Substring(0, $_.IndexOf('=')) }
 }
 
 # Find files by name recursively
@@ -86,7 +86,7 @@ function Find-File {
 
 # Quickly open all files with conflicts in the editor
 function Resolve-MergeConflicts {
-	$FilesWithConflicts = (git.exe diff --name-only --diff-filter=U | Get-Unique)
+	$FilesWithConflicts = (git diff --name-only --diff-filter=U | Get-Unique)
 
 	if ($FilesWithConflicts) {
 		&"$Editor" @FilesWithConflicts
