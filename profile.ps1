@@ -1,5 +1,5 @@
 # Disable blinking cursor if running in Windows Terminal
-if (Test-Path env:WT_PROFILE_ID)
+if (Test-Path env:WT_SESSION)
 {
 	Write-Output "`e[2 q"
 }
