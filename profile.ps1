@@ -1,7 +1,7 @@
 # Disable blinking cursor if running in Windows Terminal
 if (Test-Path env:WT_SESSION)
 {
-	Write-Output "`e[2 q"
+	Write-Host -NoNewline "`e[2 q"
 }
 
 # Set character encoding to UTF-8 for all commands that support the -Encoding
