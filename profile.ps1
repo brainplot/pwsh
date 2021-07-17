@@ -112,3 +112,7 @@ Source-OptionalFile "$PSScriptRoot\_rustup.ps1"
 function Get-Weather {
 	curl.exe 'wttr.in'
 }
+
+function Start-DeveloperPowerShell {
+	& "${env:ProgramFiles(x86)}\Microsoft Visual Studio\2019\Community\Common7\Tools\Launch-VsDevShell.ps1"
+}
