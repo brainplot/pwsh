@@ -81,6 +81,11 @@ function Update-PipLocalRepository {
 	pip list --outdated --format freeze | ForEach-Object { pip.exe install -U $_.Substring(0, $_.IndexOf('=')) }
 }
 
+# Update all Neovim plugins
+function Update-NeovimPlugins {
+	nvim -c PlugUpgrade -c quitall && nvim -c PlugUpdate -c quitall
+}
+
 # Find files by name recursively
 function Find-File {
 	Get-ChildItem -Force -Recurse -ErrorAction SilentlyContinue @Args
