@@ -45,6 +45,12 @@ $GitPromptSettings.DefaultPromptWriteStatusFirst = $True
 # Import ZLocation module to easily jump around within directories
 Import-Module ZLocation
 
+# Docker & Kubernetes
+Import-Module DockerCompletion
+Import-Module PSKubectlCompletion
+Set-Alias k -Value kubectl
+Register-KubectlCompletion
+
 # Import posh-vcpkg if present
 Import-Module "$env:VCPKG_ROOT\scripts\posh-vcpkg" -ErrorAction SilentlyContinue
 
