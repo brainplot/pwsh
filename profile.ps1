@@ -25,6 +25,7 @@ if ($host.Name -eq 'ConsoleHost') {
 	Set-PSReadLineOption -EditMode Emacs
 	Set-PSReadlineOption -BellStyle Visual
 	Set-PSReadlineOption -HistorySearchCursorMovesToEnd
+	Set-PSReadlineKeyHandler -Key Tab -Function Complete
 }
 
 function private:Source-OptionalFile ([string] $targetFile) {
