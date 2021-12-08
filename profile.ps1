@@ -86,6 +86,11 @@ function Edit-Neovim {
 	Edit-File @Args "$env:LOCALAPPDATA\nvim\init.vim"
 }
 
+# Edit hosts file
+function Edit-Hosts {
+	Edit-File @Args $env:SystemRoot\System32\drivers\etc\hosts
+}
+
 # Update all pip packages
 function Update-PipLocalRepository {
 	pip list --outdated --format freeze | ForEach-Object { pip.exe install -U $_.Substring(0, $_.IndexOf('=')) }
