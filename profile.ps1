@@ -16,7 +16,7 @@ $PSDefaultParameterValues += @{
 }
 
 # Set default editor to open text files with
-$private:Editor = if (Test-Path env:EDITOR) { $env:EDITOR } else { 'notepad' }
+$Editor = if (Test-Path env:EDITOR) { $env:EDITOR } else { 'notepad' }
 
 # Make Powershell behave similarly to Bash
 if ($host.Name -eq 'ConsoleHost') {
