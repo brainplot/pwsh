@@ -43,6 +43,9 @@ $GitPromptSettings.DefaultPromptBeforeSuffix.Text = '`n'
 # Print the branch name at the start of the prompt, before the current directory
 $GitPromptSettings.DefaultPromptWriteStatusFirst = $True
 
+# Show number of stash entries
+$GitPromptSettings.EnableStashStatus = $True
+
 # Import ZLocation module to easily jump around within directories
 Import-Module ZLocation
 
