@@ -25,6 +25,7 @@ if ($host.Name -eq 'ConsoleHost') {
 	Set-PSReadLineOption -EditMode Emacs
 	Set-PSReadlineOption -BellStyle Visual
 	Set-PSReadlineOption -HistorySearchCursorMovesToEnd
+	Set-PSReadlineOption -HistoryNoDuplicates
 	Set-PSReadlineKeyHandler -Key Tab -Function Complete
 }
 
