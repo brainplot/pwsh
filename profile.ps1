@@ -51,7 +51,9 @@ $GitPromptSettings.EnableStashStatus = $True
 Import-Module ZLocation
 
 # Docker
-Import-Module DockerCompletion
+if (Get-Command docker) {
+	Import-Module DockerCompletion
+}
 
 # Kubernetes
 if (Get-Command kubectl) {
