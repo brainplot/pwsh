@@ -50,11 +50,14 @@ $GitPromptSettings.EnableStashStatus = $True
 # Import ZLocation module to easily jump around within directories
 Import-Module ZLocation
 
-# Docker & Kubernetes
+# Docker
 Import-Module DockerCompletion
-Import-Module PSKubectlCompletion
-Set-Alias k -Value kubectl
-Register-KubectlCompletion
+
+# Kubernetes
+if (Get-Command kubectl) {
+	Set-Alias k -Value kubectl
+	kubectl completion powershell | Out-String | Invoke-Expression
+}
 
 # Import posh-vcpkg if present
 Import-Module "$env:VCPKG_ROOT\scripts\posh-vcpkg" -ErrorAction SilentlyContinue
