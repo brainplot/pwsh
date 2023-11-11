@@ -51,12 +51,12 @@ $GitPromptSettings.EnableStashStatus = $True
 Import-Module ZLocation
 
 # Docker
-if (Get-Command docker) {
+if (Get-Command docker -ErrorAction SilentlyContinue) {
 	Import-Module DockerCompletion
 }
 
 # Kubernetes
-if (Get-Command kubectl) {
+if (Get-Command kubectl -ErrorAction SilentlyContinue) {
 	Set-Alias k -Value kubectl
 	kubectl completion powershell | Out-String | Invoke-Expression
 }
